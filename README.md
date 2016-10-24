@@ -22,7 +22,8 @@ Ohjelmassa on muutamia asetuksia, joita voi vaihtaa yle-areena-lapsisoitin.ini -
 Ohjelma on tehty AutoHotkeyllä (hakemistossa alkuperäinen skripti).
 
 Tekijä:
-[Jaakko Haavisto](jaaxtra@gmail.com)
+Jaakko Haavisto,
+jaaxtra@gmail.com
 
 Muutosloki:
 
