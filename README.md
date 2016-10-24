@@ -1,34 +1,28 @@
-Lapsisoitin v1.2 (24.10.2016)
+Lapsisoitin v1.2
 **********************
 
 Vaatii toimiakseen seuraavat ohjelmat:
-  * Flickfetch (http://flickfetch.bplaced.net/)
-  * VLC (http://www.videolan.org/vlc/)
+  * [FlickFetch](http://flickfetch.bplaced.net/)
+  * [VLC](http://www.videolan.org/vlc/)
 
-Tällä ohjelmalla voit kätevästi valita useamman ohjelman, jonka jälkeen ne
-näytetään peräkkäin. Sitten kone menee unitilaan.
+Tällä ohjelmalla voit kätevästi valita useamman ohjelman, jonka jälkeen ne näytetään peräkkäin. Sitten kone menee unitilaan. Ohjelma samoja sivustoja mitä FlickFetchikin (Yle Areena, Yle Elävä Arkisto, Ruutu ja TV5), mutta näiden lisäksi myös [TV7](http://www.tv7.fi/vod/):aa. Ohjelma on kehitetty vain Yle Areenan ja TV7:n kanssa, ja niille varta vasten kehitetty.
 
-Kopioi osoitteet Yle-Areenan tai TV7:n sivuilta ja liitä ne ohjelmaan.
-Voit vaihtoehtoisesti kopioida ne leikepöydälle esim. Chromen [Copy all Urls-
-lisäosaa käyttämällä. https://chrome.google.com/webstore/detail/copy-all-urls/djdmadneanknadilpjiknlnanaolmbfk
-Tässä tapauksessa voit painaa suoraan OK.
+Kopioi videon osoitteet sivustolta ja liitä ne ohjelmaan. Voit liittää yhteensä 7 videon osoitteet. Kätevämpi ratkaisu on käyttää Google Chromen [Copy all Urls](https://chrome.google.com/webstore/detail/copy-all-urls/djdmadneanknadilpjiknlnanaolmbfk) -lisäosaa, ja kopioida osoitteet leikepöydälle. Siinä tapauksessa ei tarvitse lisätä kenttiin mitään, vaan voi painaa suoraan OK. Ohjelma hakee osoitteet suoraan leikepöydältä.
 
-Ohjelmassa on muutamia asetuksia, joita voi vaihtaa
-yle-areena-lapsisoitin.ini -tiedostoa muokkaamalla:
-  * Flickfetchin hakemisto (etsii automaattisesti oletushakemistosta)
+Ohjelmassa on muutamia asetuksia, joita voi vaihtaa yle-areena-lapsisoitin.ini -tiedostoa muokkaamalla:
+  * FlickFetchin hakemisto (etsii automaattisesti oletushakemistosta)
   * Tiedostojen latauspaikka (oletuksena 'lataukset')
-  * Automaattinen Yle-Areenan käynnistys
-  * Mikä sivu silloin avataan
-  * Automaattinen TV7:n käynnistys
-  * Mikä sivu silloin avataan
+  * Käynnistetäänkö Yle-Areena automaattisesti?
+  * Mikä sivu silloin avataan (oletuksena Omat Suosikit)
+  * Käynnistetäänkö TV7 automaattisesti?
+  * Mikä sivu silloin avataan (oletuksena lasten ohjelmat)
   * VLC playerin hakemisto
-  * Mennäänkö lopuksi unitilaan
+  * Mennäänkö lopuksi unitilaan?
 
-Ohjelma on tehty Autohotkeyllä (hakemistossa alkuperäinen skripti).
+Ohjelma on tehty AutoHotkeyllä (hakemistossa alkuperäinen skripti).
 
 Tekijä:
-Jaakko Haavisto
-jaaxtra@gmail.com
+[Jaakko Haavisto](jaaxtra@gmail.com)
 
 Muutosloki:
 
