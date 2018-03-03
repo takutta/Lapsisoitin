@@ -28,6 +28,9 @@ jaaxtra@gmail.com
 
 Muutosloki:
 
+1.3.1
+- Viimeisin päivitys rikkoi TV7:n ohjelmien lataamisen. Nyt on korjattu.
+
 1.3
 - Ohjelma lataa nyt yhden videon kerrallaan ja jää taustalle lataamaan seuraavaa
 

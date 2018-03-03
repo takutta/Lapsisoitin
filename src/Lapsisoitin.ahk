@@ -18,8 +18,8 @@ IniRead, VLC, Lapsisoitin.ini, asetukset, VLC
 IniRead, unille, Lapsisoitin.ini, asetukset, Unille
 
 ; Jos ei Flickfechiä löydy, yritä etsiä sitä kotihakemistosta
-IfNotExist, SD
-	SD = C:\Users\%A_Username%\AppData\Local\FlickFetch\
+IfNotExist, FlickFetch
+	FlickFetch = C:\Users\%A_Username%\AppData\Local\FlickFetch\FlickFetch.exe
 
 ; Käynnistä Yle-Areena
 If (autoareena = true)
@@ -81,10 +81,11 @@ Kumpi(sei,7)
 
 olemassa = %A_ScriptDir%\tmp\1.txt
 If (FileExist(olemassa))
+{
 		Run, %FlickFetch% --in %A_ScriptDir%\tmp\1.txt --cfg %A_ScriptDir%\lapsisoitin.cfg --close --center --exist skip --closeifnoerrors --out %A_ScriptDir%\tmp\1\
 		Sleep, 2000
 		WinWaitClose, ahk_exe FlickFetch.exe
- 
+}
 Lataus(2)
 Ohjelma(1)
 Lataus(3)

@@ -44,20 +44,9 @@ DownloadFile(UrlToFile, SaveFileAs, Overwrite := True, UseProgressBar := True) {
 TV7(tv7Lataus, tv7nimi)
 {
   urldownloadtofile , %tv7Lataus% , %A_ScriptDir%\tmp\%tv7nimi%.html
-  FileRead , page , %A_ScriptDir%\tmp\%tv7nimi%.html
-  Loop , parse , page , `n
-  {
-      line := A_LoopField
-      outputdebug %line%
-      if line contains http://vod.tv7.fi/vod/
-      {
-           StringGetPos, OutputVar, line, http, L
-           StringTrimLeft, MP4, line, OutputVar
-           break
-    }
-  }
-  Lopullinen := SubStr(MP4, 1, InStr(MP4, "MP4") + 2)
-  DownloadFile(Lopullinen, A_ScriptDir . "\Lataukset\" . tv7nimi ".mp4")
+  FileGetSize, urlitiedosto, %A_ScriptDir%\tmp\%tv7nimi%.html
+  if (urlitiedosto < 15)
+      FileDelete, %A_ScriptDir%\tmp\%tv7nimi%.html
 }
 
 Kumpi(osoite,numero)
@@ -85,17 +74,38 @@ Kumpi(osoite,numero)
 
 Lataus(numero)
 {
-    IniRead, FlickFetch, Lapsisoitin.ini, asetukset, FlickFetch
     olemassa = %A_ScriptDir%\tmp\%numero%.txt
+    olemassahtml = %A_ScriptDir%\tmp\%numero%.html
     If (FileExist(olemassa))
+    {
+        IniRead, FlickFetch, Lapsisoitin.ini, asetukset, FlickFetch
         Run, %FlickFetch% --in %A_ScriptDir%\tmp\%numero%.txt --cfg %A_ScriptDir%\lapsisoitin.cfg --close --center --exist skip --closeifnoerrors --min --out %A_ScriptDir%\tmp\%numero%\
+    }
+    If (FileExist(olemassahtml))
+    {
+        FileRead , page , %A_ScriptDir%\tmp\%numero%.html
+        Loop , parse , page , `n
+        {
+          line := A_LoopField
+          outputdebug %line%
+          if line contains http://vod.tv7.fi/vod/
+          {
+            StringGetPos, OutputVar, line, http, L
+            StringTrimLeft, MP4, line, OutputVar
+            break
+          }
+        }
+      Lopullinen := SubStr(MP4, 1, InStr(MP4, "MP4") + 2)
+      DownloadFile(Lopullinen, A_ScriptDir . "\tmp\" . numero . "\" . numero . ".mp4")
+    }
 }
 
 Ohjelma(numero)
 {
     IniRead, VLC, Lapsisoitin.ini, asetukset, VLC
     olemassa = %A_ScriptDir%\tmp\%numero%.txt
-    If (FileExist(olemassa))
+    olemassahtml = %A_ScriptDir%\tmp\%numero%.html
+    If (FileExist(olemassa)) OR (FileExist(olemassahtml))
     {
         Run, %VLC% %A_ScriptDir%\tmp\%numero%\ --fullscreen --play-and-exit --no-sub-autodetect-file
         Sleep, 2000
