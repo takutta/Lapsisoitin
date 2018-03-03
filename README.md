@@ -1,5 +1,5 @@
-Lapsisoitin v1.3
-================
+Lapsisoitin
+===========
 
 Vaatii toimiakseen seuraavat ohjelmat:
   * [FlickFetch](http://flickfetch.bplaced.net/)
