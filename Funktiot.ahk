@@ -47,13 +47,13 @@ TV7(tv7Lataus, tv7nimi)
   FileRead , page , %A_ScriptDir%\tmp\%tv7nimi%.html
   Loop , parse , page , `n
   {
-      line := A_LoopField
-      outputdebug %line%
-      if line contains http://vod.tv7.fi/vod/
-      {
-           StringGetPos, OutputVar, line, http, L
-           StringTrimLeft, MP4, line, OutputVar
-           break
+    line := A_LoopField
+    outputdebug %line%
+    if line contains http://vod.tv7.fi/vod/
+    {
+      StringGetPos, OutputVar, line, http, L
+      StringTrimLeft, MP4, line, OutputVar
+      break
     }
   }
   Lopullinen := SubStr(MP4, 1, InStr(MP4, "MP4") + 2)
@@ -68,53 +68,16 @@ Kumpi(osoite,numero)
     return
     }
     else
-        FileAppend, %osoite%`n, %A_ScriptDir%\tmp\%numero%.txt
-        FileGetSize, urlitiedosto, %A_ScriptDir%\tmp\%numero%.txt
-        if (urlitiedosto > 15)
-        {
-            ; Poistetaan mahdollinen autoplay
-            FileRead, TheText, %A_ScriptDir%\tmp\%numero%.txt
-            StringReplace, NewText, TheText, ?autoplay=true, , All
-            FileDelete, %A_ScriptDir%\tmp\%numero%.txt
-            FileAppend, %NewText%, %A_ScriptDir%\tmp\%numero%.txt
-        }
-        else
-            FileDelete, %A_ScriptDir%\tmp\%numero%.txt
+    FileAppend, %osoite%`n, %A_ScriptDir%\tmp\urlit.txt
     Sleep, 1
-}
-
-Lataus(numero)
-{
-    IniRead, FlickFetch, Lapsisoitin.ini, asetukset, FlickFetch
-    olemassa = %A_ScriptDir%\tmp\%numero%.txt
-    If (FileExist(olemassa))
-        Run, %FlickFetch% --in %A_ScriptDir%\tmp\%numero%.txt --cfg %A_ScriptDir%\lapsisoitin.cfg --close --center --exist skip --closeifnoerrors --min --out %A_ScriptDir%\tmp\%numero%\
-}
-
-Ohjelma(numero)
-{
-    IniRead, VLC, Lapsisoitin.ini, asetukset, VLC
-    olemassa = %A_ScriptDir%\tmp\%numero%.txt
-    If (FileExist(olemassa))
-    {
-        Run, %VLC% %A_ScriptDir%\tmp\%numero%\ --fullscreen --play-and-exit --no-sub-autodetect-file
-        Sleep, 2000
-        WinWaitClose, ahk_exe Vlc.exe
-}
-    WinWaitClose, ahk_exe FlickFetch.exe
 }
 
 Puhdistus()
 {
-  ; Tyhjennä tmp-kansio
-  FileDelete, %A_ScriptDir%\tmp\1\*.*
-  FileDelete, %A_ScriptDir%\tmp\2\*.*
-  FileDelete, %A_ScriptDir%\tmp\3\*.*
-  FileDelete, %A_ScriptDir%\tmp\4\*.*
-  FileDelete, %A_ScriptDir%\tmp\5\*.*
-  FileDelete, %A_ScriptDir%\tmp\6\*.*
-  FileDelete, %A_ScriptDir%\tmp\7\*.*
-  FileDelete, %A_ScriptDir%\tmp\*.txt
+  ; Tyhjennä lataukset-kansio
+  FileDelete, %A_ScriptDir%\Lataukset\*.*
+  ; Tuhotaan urlit.txt -tiedosto
+  FileDelete, %A_ScriptDir%\tmp\urlit.txt
 
   ; Tuhotaan html-tiedostot
   FileDelete, %A_ScriptDir%\tmp\*.html
